@@ -1,0 +1,401 @@
+/* =========================================
+   1. CSS Variables (Theming)
+   ========================================= */
+:root {
+  /* Colors */
+  --bg-main: #0f172a;        /* Deep slate background */
+  --bg-card: #1e293b;        /* Slightly lighter slate for cards */
+  --bg-input: #334155;       /* Input background */
+  --text-main: #f8fafc;      /* Bright white text */
+  --text-muted: #94a3b8;     /* Muted grey for subtitles/placeholders */
+  --accent: #6366f1;         /* Indigo accent for buttons/links */
+  --accent-hover: #4f46e5;   /* Darker indigo for hover states */
+  --border-color: #334155;   /* Subtle borders */
+  --error: #ef4444;          /* Red for validation errors */
+
+  /* Shadows & Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  
+  /* Transitions */
+  --transition: all 0.2s ease-in-out;
+}
+
+/* =========================================
+   2. Global Reset & Body
+   ========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--text-main);
+}
+
+/* =========================================
+   3. Layout & Containers
+   ========================================= */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+/* =========================================
+   4. Cards & Posts (Home Page)
+   ========================================= */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.post-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: var(--transition);
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.post-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-content {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   5. Forms (Login, Register, Create Post)
+   ========================================= */
+.form-container {
+  width: 100%;
+  max-width: 450px; /* Perfect width for Login/Register */
+}
+
+.form-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.form-subtitle {
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* =========================================
+   6. Buttons
+   ========================================= */
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  background-color: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn:disabled {
+  background-color: var(--bg-input);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Form switch text (e.g., "Don't have an account? Sign up") */
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+/* Two column layout for first + last name */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Improve Navbar */
+.navbar {
+  background-color: var(--bg-card);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h2 {
+  font-size: 1.5rem;
+}
+
+.nav-links a {
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+/* =========================================
+   Create Post Enhancements
+========================================= */
+
+textarea.form-input {
+  min-height: 150px;
+}
+
+.form-container {
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+}
+
+/* Make create page slightly wider */
+@media (min-width: 768px) {
+  .form-container {
+    max-width: 600px;
+  }
+}
+/* =========================================
+   Post Actions
+========================================= */
+
+.post-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.agree-btn,
+.disagree-btn,
+.reply-btn {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.agree-btn {
+  background-color: #16a34a;
+  color: white;
+}
+
+.agree-btn:hover {
+  background-color: #15803d;
+}
+
+.disagree-btn {
+  background-color: #dc2626;
+  color: white;
+}
+
+.disagree-btn:hover {
+  background-color: #b91c1c;
+}
+
+.reply-btn {
+  background-color: var(--bg-input);
+  color: var(--text-main);
+}
+
+.reply-btn:hover {
+  background-color: var(--accent);
+}
+
+/* =========================================
+   Reply Section
+========================================= */
+
+.reply-box {
+  margin-top: 1rem;
+}
+
+.small-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.reply-section {
+  margin-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+
+.reply-item {
+  background-color: var(--bg-input);
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.active-vote {
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.reply-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.like-reply-btn,
+.nested-reply-btn {
+  background: var(--bg-input);
+  border: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.like-reply-btn:hover {
+  background: #16a34a;
+}
+
+.nested-replies {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--border-color);
+}
+
+.nested-item {
+  background: var(--bg-input);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  margin-top: 0.4rem;
+}
+.user-link {
+  margin-left: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.user-link:hover {
+  color: white;
+}
+
+.account-info p {
+  margin-bottom: 0.8rem;
+}
+
+.logout-btn {
+  margin-top: 1.5rem;
+  background-color: #dc2626;
+}
+
+.logout-btn:hover {
+  background-color: #b91c1c;
+}
+.account-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.logout-btn {
+  background-color: #dc2626;
+}
+
+.logout-btn:hover {
+  background-color: #b91c1c;
+}
